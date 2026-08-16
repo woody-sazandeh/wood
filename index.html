@@ -7,23 +7,28 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
   margin:0;
   background:#080706;
   color:#f4eee7;
   font-family:Tahoma,Arial,sans-serif
 }
+
 .app{
   max-width:700px;
   min-height:100vh;
   margin:auto;
-  background:linear-gradient(180deg,#120b07,#080706)
+  background:linear-gradient(180deg,#120b07,#080706);
+  padding-bottom:70px
 }
+
 header{
   height:70px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
+  padding:0 18px;
   border-bottom:1px solid #392214;
   position:sticky;
   top:0;
@@ -31,6 +36,7 @@ header{
   backdrop-filter:blur(10px);
   z-index:5
 }
+
 .logo{
   width:45px;
   height:45px;
@@ -43,12 +49,23 @@ header{
   font-size:25px;
   font-weight:bold
 }
-h1{font-size:23px;margin:20px 15px 5px}
+
+.header-title{
+  font-weight:bold;
+  font-size:20px
+}
+
+h1{
+  font-size:23px;
+  margin:20px 15px 5px
+}
+
 .welcome{
   padding:5px 15px 15px;
   color:#b6aaa0;
   line-height:2
 }
+
 .card{
   margin:12px;
   padding:16px;
@@ -56,11 +73,13 @@ h1{font-size:23px;margin:20px 15px 5px}
   border:1px solid #352114;
   border-radius:18px
 }
+
 .user{
   display:flex;
   align-items:center;
   gap:10px
 }
+
 .avatar{
   width:44px;
   height:44px;
@@ -72,38 +91,111 @@ h1{font-size:23px;margin:20px 15px 5px}
   font-weight:bold;
   font-size:20px
 }
-.name{font-weight:bold}
+
+.big-avatar{
+  width:85px;
+  height:85px;
+  margin:auto;
+  font-size:35px
+}
+
+.name{
+  font-weight:bold
+}
+
 .handle{
   color:#897d74;
   font-size:12px;
   margin-top:4px
 }
+
+.badges{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  margin-top:5px
+}
+
+.badge{
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:10px;
+  background:#24170f;
+  border:1px solid #5b351c;
+  color:#d6b08e
+}
+
+.creator{
+  background:#4b2a0e;
+  border-color:#c36b22;
+  color:#ffd19f
+}
+
+.admin{
+  background:#1d2028;
+  border-color:#66718b;
+  color:#bfc9df
+}
+
+.mod{
+  background:#18231a;
+  border-color:#557b5b;
+  color:#a8d3ae
+}
+
+.verified{
+  background:#17202b;
+  border-color:#557a9d;
+  color:#9fc9ed
+}
+
+.vip{
+  background:#27172d;
+  border-color:#744d82;
+  color:#d8b2e8
+}
+
 .post{
   line-height:2;
-  margin:14px 0
+  margin:14px 0;
+  white-space:pre-wrap
 }
+
 .actions{
   display:flex;
-  gap:8px
+  gap:8px;
+  flex-wrap:wrap
 }
+
 button{
   border:0;
   border-radius:12px;
   padding:10px 14px;
   background:#21150e;
-  color:#c8bcb2
+  color:#c8bcb2;
+  cursor:pointer
 }
-.like:active{color:#d27b32}
+
+button:hover{
+  background:#2c1b11
+}
+
+.liked{
+  color:#e47b29
+}
+
 .compose{
   display:flex;
   gap:8px;
   padding:12px;
   position:sticky;
   bottom:65px;
-  background:#080706ee
+  background:#080706ee;
+  z-index:4
 }
-input{
-  flex:1;
+
+input,textarea,select{
+  width:100%;
   padding:13px;
   border-radius:14px;
   border:1px solid #3b2415;
@@ -111,10 +203,17 @@ input{
   color:white;
   outline:none
 }
+
+textarea{
+  min-height:100px;
+  resize:vertical
+}
+
 .send{
   background:#99501a;
   color:white
 }
+
 nav{
   position:fixed;
   bottom:0;
@@ -127,18 +226,140 @@ nav{
   border-top:1px solid #352114;
   z-index:10
 }
+
 nav button{
   flex:1;
   border-radius:0;
   background:none;
-  font-size:12px
+  font-size:11px
 }
+
 nav button span{
   display:block;
   font-size:20px;
   margin-bottom:3px
 }
-.active{color:#d27b32}
+
+.active{
+  color:#d27b32
+}
+
+.page{
+  display:none
+}
+
+.page.show{
+  display:block
+}
+
+.search{
+  display:flex;
+  gap:8px;
+  margin:12px
+}
+
+.search button{
+  background:#99501a;
+  color:white
+}
+
+.user-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #302017
+}
+
+.follow{
+  border:1px solid #99501a;
+  background:transparent
+}
+
+.comment{
+  padding:10px 0;
+  border-bottom:1px solid #302017
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:20;
+  align-items:flex-end
+}
+
+.modal.show{
+  display:flex
+}
+
+.modal-box{
+  width:min(700px,100%);
+  max-height:85vh;
+  overflow:auto;
+  background:#120c09;
+  border:1px solid #422817;
+  border-radius:22px 22px 0 0;
+  padding:18px
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px
+}
+
+.close{
+  background:none;
+  font-size:24px
+}
+
+.profile{
+  text-align:center;
+  padding:25px 15px
+}
+
+.profile .avatar{
+  margin:auto
+}
+
+.profile h2{
+  margin:12px 0 5px
+}
+
+.stats{
+  display:flex;
+  justify-content:center;
+  gap:35px;
+  margin:20px 0
+}
+
+.stat b{
+  font-size:20px
+}
+
+.notice{
+  background:#1b120d;
+  border:1px solid #392214;
+  border-radius:12px;
+  padding:12px;
+  margin:8px 0;
+  color:#cfc3ba
+}
+
+.empty{
+  text-align:center;
+  color:#897d74;
+  padding:30px
+}
+
+.danger{
+  background:#32130f;
+  color:#e79b91
+}
 </style>
 </head>
 
@@ -147,8 +368,14 @@ nav button span{
 <div class="app">
 
 <header>
+  <div class="header-title">WOOD 🌲</div>
   <div class="logo">W</div>
 </header>
+
+
+<!-- HOME -->
+
+<section id="home" class="page show">
 
 <h1>به برنامه وود خوش اومدی رفیق 🤠</h1>
 
@@ -157,118 +384,923 @@ nav button span{
 </div>
 
 <div class="card">
-  <b>🔥 موضوعات داغ وود</b>
-  <p>فوتبال • بازی • فیلم و سریال • موسیقی • تکنولوژی</p>
+<b>🔥 موضوعات داغ وود</b>
+<p>فوتبال • بازی • فیلم و سریال • موسیقی • تکنولوژی</p>
 </div>
 
-<div id="feed">
+<div id="feed"></div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section id="searchPage" class="page">
+
+<h1>🔎 جستجو</h1>
+
+<div class="search">
+<input id="searchInput" placeholder="نام کاربری یا پست...">
+<button onclick="search()">جستجو</button>
+</div>
+
+<div id="searchResults" class="card">
+<div class="empty">چیزی جستجو نشده.</div>
+</div>
+
+</section>
+
+
+<!-- CREATE POST -->
+
+<section id="createPage" class="page">
+
+<h1>📝 ساخت پست</h1>
 
 <div class="card">
-  <div class="user">
-    <div class="avatar">و</div>
-    <div>
-      <div class="name">وود</div>
-      <div class="handle">@wood · همین الان</div>
-    </div>
-  </div>
 
-  <div class="post">
-    اولین پست آزمایشی وود! 🌲<br>
-    به نظرتون ظاهر برنامه چطوره؟
-  </div>
+<textarea id="newPost"
+placeholder="چه چیزی در ذهنت هست؟"></textarea>
 
-  <div class="actions">
-    <button class="like" onclick="like(this)">♡ 128</button>
-    <button>💬 24</button>
-    <button>🔁 17</button>
-  </div>
+<br><br>
+
+<button class="send" onclick="createPost()">
+انتشار پست
+</button>
+
+</div>
+
+</section>
+
+
+<!-- NOTIFICATIONS -->
+
+<section id="notificationsPage" class="page">
+
+<h1>🔔 اعلان‌ها</h1>
+
+<div id="notifications" class="card">
+<div class="empty">
+فعلاً اعلان جدیدی نداری.
+</div>
+</div>
+
+</section>
+
+
+<!-- PROFILE -->
+
+<section id="profilePage" class="page">
+
+<div class="card profile">
+
+<div class="avatar big-avatar">
+و
+</div>
+
+<h2>
+WOODY
+</h2>
+
+<div class="badges" style="justify-content:center">
+<span class="badge creator">
+👑 CREATOR
+</span>
+</div>
+
+<div class="handle">
+@woody-sazandeh
+</div>
+
+<p>
+سازنده و مدیر اصلی WOOD 🌲
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<b id="postCount">0</b>
+<br>
+پست
+</div>
+
+<div class="stat">
+<b>∞</b>
+<br>
+فالوئر
 </div>
 
 </div>
+
+<button onclick="openAdmin()">
+🛡️ پنل مدیریت
+</button>
+
+</div>
+
+</section>
+
+
+<!-- QUICK POST -->
 
 <div class="compose">
-  <input id="postInput" placeholder="چه چیزی در ذهنته؟">
-  <button class="send" onclick="addPost()">ارسال</button>
+
+<input
+id="quickPost"
+placeholder="چه چیزی در ذهنته؟">
+
+<button
+class="send"
+onclick="quickPost()">
+ارسال
+</button>
+
 </div>
 
+
+<!-- NAVIGATION -->
+
 <nav>
-  <button class="active">
-    <span>⌂</span>
-    خانه
-  </button>
 
-  <button onclick="alert('بخش جستجو به‌زودی اضافه می‌شود 🔎')">
-    <span>⌕</span>
-    جستجو
-  </button>
+<button
+class="active"
+onclick="showPage('home',this)">
+<span>⌂</span>
+خانه
+</button>
 
-  <button onclick="document.getElementById('postInput').focus()">
-    <span>＋</span>
-    پست
-  </button>
+<button
+onclick="showPage('searchPage',this)">
+<span>⌕</span>
+جستجو
+</button>
 
-  <button onclick="alert('فعلاً اعلان جدیدی نداری 🔔')">
-    <span>♧</span>
-    اعلان‌ها
-  </button>
+<button
+onclick="showPage('createPage',this)">
+<span>＋</span>
+پست
+</button>
 
-  <button onclick="alert('پروفایل WOOD')">
-    <span>♙</span>
-    پروفایل
-  </button>
+<button
+onclick="showPage('notificationsPage',this)">
+<span>♧</span>
+اعلان
+</button>
+
+<button
+onclick="showPage('profilePage',this)">
+<span>♙</span>
+پروفایل
+</button>
+
 </nav>
 
 </div>
 
+
+<!-- COMMENTS MODAL -->
+
+<div id="commentModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<b>💬 نظرات</b>
+
+<button
+class="close"
+onclick="closeComments()">
+×
+</button>
+
+</div>
+
+<div id="comments"></div>
+
+<div style="display:flex;gap:8px">
+
+<input
+id="commentInput"
+placeholder="نظر خودت را بنویس...">
+
+<button
+class="send"
+onclick="addComment()">
+ارسال
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ADMIN MODAL -->
+
+<div id="adminModal" class="modal">
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+<b>👑 مدیریت تگ‌ها</b>
+
+<button
+class="close"
+onclick="closeAdmin()">
+×
+</button>
+
+</div>
+
+<div class="notice">
+
+فقط WOODY / CREATOR می‌تواند تگ کاربران را تعیین کند.
+
+</div>
+
+<div id="adminUsers"></div>
+
+</div>
+
+</div>
+
+
 <script>
 
-function like(button){
-  if(button.dataset.liked){
-    button.innerText="♡ 128";
-    delete button.dataset.liked;
-  }else{
-    button.innerText="♥ 129";
-    button.dataset.liked="yes";
-  }
+const users=[
+
+{
+id:"woody",
+name:"WOODY",
+handle:"@woody-sazandeh",
+avatar:"و",
+tags:["creator"]
+},
+
+{
+id:"wood",
+name:"وود",
+handle:"@wood",
+avatar:"و",
+tags:["verified"]
+},
+
+{
+id:"user1",
+name:"کاربر نمونه",
+handle:"@wood_user",
+avatar:"ک",
+tags:["member"]
+},
+
+{
+id:"admin1",
+name:"مدیر نمونه",
+handle:"@admin",
+avatar:"م",
+tags:["admin"]
 }
 
-function addPost(){
+];
 
-  const input=document.getElementById("postInput");
-  const text=input.value.trim();
 
-  if(!text){
-    alert("اول چیزی بنویس رفیق 🤠");
-    return;
-  }
+let posts=[
+{
+id:1,
+user:"wood",
+text:"اولین پست آزمایشی وود! 🌲\nبه نظرتون ظاهر برنامه چطوره؟",
+likes:128,
+liked:false,
+comments:[]
+},
 
-  const post=document.createElement("div");
-  post.className="card";
-
-  post.innerHTML=`
-    <div class="user">
-      <div class="avatar">ح</div>
-      <div>
-        <div class="name">حمزه</div>
-        <div class="handle">@wood_user · همین الان</div>
-      </div>
-    </div>
-
-    <div class="post"></div>
-
-    <div class="actions">
-      <button class="like" onclick="like(this)">♡ 0</button>
-      <button>💬 0</button>
-      <button>🔁 0</button>
-    </div>
-  `;
-
-  post.querySelector(".post").innerText=text;
-
-  document.getElementById("feed").prepend(post);
-
-  input.value="";
+{
+id:2,
+user:"woody",
+text:"به WOOD خوش اومدین ❤️\nقراره کلی قابلیت جدید اضافه کنیم!",
+likes:42,
+liked:false,
+comments:[]
 }
+
+];
+
+
+let currentPost=null;
+
+
+const tags={
+
+creator:{
+name:"👑 CREATOR",
+class:"creator"
+},
+
+admin:{
+name:"🛡️ ADMIN",
+class:"admin"
+},
+
+mod:{
+name:"🔧 MODERATOR",
+class:"mod"
+},
+
+verified:{
+name:"✓ VERIFIED",
+class:"verified"
+},
+
+vip:{
+name:"⭐ VIP",
+class:"vip"
+},
+
+member:{
+name:"MEMBER",
+class:""
+}
+
+};
+
+
+function getUser(id){
+
+return users.find(
+u=>u.id===id
+);
+
+}
+
+
+function badges(user){
+
+return user.tags.map(
+tag=>{
+
+const t=tags[tag];
+
+return `
+<span class="badge ${t.class}">
+${t.name}
+</span>
+`;
+
+}
+).join("");
+
+}
+
+
+function userHTML(user){
+
+return `
+
+<div class="user">
+
+<div class="avatar">
+${user.avatar}
+</div>
+
+<div>
+
+<div class="name">
+${user.name}
+</div>
+
+<div class="handle">
+${user.handle}
+</div>
+
+<div class="badges">
+${badges(user)}
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function render(){
+
+const feed=document.getElementById("feed");
+
+feed.innerHTML="";
+
+posts.forEach(post=>{
+
+const user=getUser(post.user);
+
+const card=document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+${userHTML(user)}
+
+<div class="post"></div>
+
+<div class="actions">
+
+<button class="${post.liked?"liked":""}"
+onclick="likePost(${post.id})">
+
+${post.liked?"♥":"♡"}
+${post.likes}
+
+</button>
+
+<button
+onclick="openComments(${post.id})">
+
+💬
+${post.comments.length}
+
+</button>
+
+<button
+onclick="sharePost()">
+
+🔁 اشتراک
+
+</button>
+
+</div>
+
+`;
+
+card.querySelector(".post").innerText=
+post.text;
+
+feed.appendChild(card);
+
+});
+
+document.getElementById("postCount").innerText=
+posts.length;
+
+}
+
+
+function likePost(id){
+
+const post=
+posts.find(p=>p.id===id);
+
+if(!post)return;
+
+post.liked=!post.liked;
+
+post.likes+=post.liked?1:-1;
+
+render();
+
+if(post.liked){
+
+notify("پست را لایک کردی ❤️");
+
+}
+
+}
+
+
+function createPost(){
+
+const input=
+document.getElementById("newPost");
+
+const text=
+input.value.trim();
+
+if(!text){
+
+alert("اول چیزی بنویس رفیق 🤠");
+
+return;
+
+}
+
+posts.unshift({
+
+id:Date.now(),
+
+user:"woody",
+
+text:text,
+
+likes:0,
+
+liked:false,
+
+comments:[]
+
+});
+
+input.value="";
+
+render();
+
+notify("پست جدید منتشر شد 📝");
+
+showPage("home");
+
+}
+
+
+function quickPost(){
+
+const input=
+document.getElementById("quickPost");
+
+const text=
+input.value.trim();
+
+if(!text){
+
+alert("اول چیزی بنویس رفیق 🤠");
+
+return;
+
+}
+
+posts.unshift({
+
+id:Date.now(),
+
+user:"woody",
+
+text:text,
+
+likes:0,
+
+liked:false,
+
+comments:[]
+
+});
+
+input.value="";
+
+render();
+
+notify("پست جدید منتشر شد 📝");
+
+}
+
+
+function openComments(id){
+
+currentPost=
+posts.find(p=>p.id===id);
+
+const box=
+document.getElementById("comments");
+
+box.innerHTML="";
+
+if(currentPost.comments.length===0){
+
+box.innerHTML=
+'<div class="empty">هنوز نظری ثبت نشده.</div>';
+
+}else{
+
+currentPost.comments.forEach(
+comment=>{
+
+box.innerHTML+=`
+
+<div class="comment">
+
+<b>${comment.user}</b>
+
+<div>
+${comment.text}
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+document
+.getElementById("commentModal")
+.classList.add("show");
+
+}
+
+
+function closeComments(){
+
+document
+.getElementById("commentModal")
+.classList.remove("show");
+
+}
+
+
+function addComment(){
+
+const input=
+document.getElementById("commentInput");
+
+const text=
+input.value.trim();
+
+if(!text)return;
+
+currentPost.comments.push({
+
+user:"WOODY",
+
+text:text
+
+});
+
+input.value="";
+
+openComments(currentPost.id);
+
+render();
+
+notify("نظر جدید ثبت شد 💬");
+
+}
+
+
+function sharePost(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"WOOD",
+
+text:"یک پست در WOOD",
+
+url:location.href
+
+});
+
+}else{
+
+alert("لینک سایت را می‌توانی از نوار مرورگر کپی کنی 🔗");
+
+}
+
+}
+
+
+function showPage(id,button){
+
+document
+.querySelectorAll(".page")
+.forEach(
+page=>page.classList.remove("show")
+);
+
+document
+.getElementById(id)
+.classList.add("show");
+
+
+document
+.querySelectorAll("nav button")
+.forEach(
+btn=>btn.classList.remove("active")
+);
+
+if(button){
+
+button.classList.add("active");
+
+}
+
+}
+
+
+function search(){
+
+const query=
+document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
+const result=
+document.getElementById("searchResults");
+
+if(!query){
+
+result.innerHTML=
+'<div class="empty">عبارت جستجو را وارد کن.</div>';
+
+return;
+
+}
+
+let html="";
+
+users.forEach(user=>{
+
+if(
+(user.name+" "+user.handle)
+.toLowerCase()
+.includes(query)
+){
+
+html+=`
+
+<div class="user-row">
+
+${userHTML(user)}
+
+<button
+class="follow"
+onclick="follow(this)">
+
+دنبال کردن
+
+</button>
+
+</div>
+
+`;
+
+}
+
+});
+
+
+posts.forEach(post=>{
+
+if(
+post.text.toLowerCase()
+.includes(query)
+){
+
+const user=getUser(post.user);
+
+html+=`
+
+<div class="notice">
+
+<b>
+${user.name}
+</b>
+
+<br>
+
+${post.text}
+
+</div>
+
+`;
+
+}
+
+});
+
+
+result.innerHTML=
+html||
+'<div class="empty">چیزی پیدا نشد.</div>';
+
+}
+
+
+function follow(button){
+
+if(button.innerText==="دنبال کردن"){
+
+button.innerText="دنبال می‌کنی";
+
+notify("کاربر را دنبال کردی 👥");
+
+}else{
+
+button.innerText="دنبال کردن";
+
+}
+
+}
+
+
+function notify(text){
+
+const box=
+document.getElementById("notifications");
+
+if(
+box.innerHTML.includes("فعلاً اعلان")
+){
+
+box.innerHTML="";
+
+}
+
+box.innerHTML=
+`<div class="notice">🔔 ${text}</div>`
++
+box.innerHTML;
+
+}
+
+
+function openAdmin(){
+
+const box=
+document.getElementById("adminUsers");
+
+box.innerHTML="";
+
+users.forEach(user=>{
+
+if(user.id==="woody")return;
+
+const row=
+document.createElement("div");
+
+row.className="user-row";
+
+row.innerHTML=`
+
+${userHTML(user)}
+
+<select>
+
+<option value="member">
+Member
+</option>
+
+<option value="admin">
+Admin
+</option>
+
+<option value="mod">
+Moderator
+</option>
+
+<option value="verified">
+Verified
+</option>
+
+<option value="vip">
+VIP
+</option>
+
+</select>
+
+`;
+
+const select=
+row.querySelector("select");
+
+select.value=
+user.tags[0]||"member";
+
+select.onchange=function(){
+
+user.tags=[this.value];
+
+openAdmin();
+
+};
+
+box.appendChild(row);
+
+});
+
+
+document
+.getElementById("adminModal")
+.classList.add("show");
+
+}
+
+
+function closeAdmin(){
+
+document
+.getElementById("adminModal")
+.classList.remove("show");
+
+}
+
+
+render();
 
 </script>
 
