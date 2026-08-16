@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOOD | وود</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#080706;
+  color:#f4eee7;
+  font-family:Tahoma,Arial,sans-serif
+}
+.app{
+  max-width:700px;
+  min-height:100vh;
+  margin:auto;
+  background:linear-gradient(180deg,#120b07,#080706)
+}
+header{
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-bottom:1px solid #392214;
+  position:sticky;
+  top:0;
+  background:#0b0908ee;
+  backdrop-filter:blur(10px);
+  z-index:5
+}
+.logo{
+  width:45px;
+  height:45px;
+  border:3px solid #9a531a;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#9a531a;
+  font-size:25px;
+  font-weight:bold
+}
+h1{font-size:23px;margin:20px 15px 5px}
+.welcome{
+  padding:5px 15px 15px;
+  color:#b6aaa0;
+  line-height:2
+}
+.card{
+  margin:12px;
+  padding:16px;
+  background:#14100d;
+  border:1px solid #352114;
+  border-radius:18px
+}
+.user{
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+.avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:#8b4916;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:20px
+}
+.name{font-weight:bold}
+.handle{
+  color:#897d74;
+  font-size:12px;
+  margin-top:4px
+}
+.post{
+  line-height:2;
+  margin:14px 0
+}
+.actions{
+  display:flex;
+  gap:8px
+}
+button{
+  border:0;
+  border-radius:12px;
+  padding:10px 14px;
+  background:#21150e;
+  color:#c8bcb2
+}
+.like:active{color:#d27b32}
+.compose{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  position:sticky;
+  bottom:65px;
+  background:#080706ee
+}
+input{
+  flex:1;
+  padding:13px;
+  border-radius:14px;
+  border:1px solid #3b2415;
+  background:#15100d;
+  color:white;
+  outline:none
+}
+.send{
+  background:#99501a;
+  color:white
+}
+nav{
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(700px,100%);
+  height:65px;
+  display:flex;
+  background:#100c0a;
+  border-top:1px solid #352114;
+  z-index:10
+}
+nav button{
+  flex:1;
+  border-radius:0;
+  background:none;
+  font-size:12px
+}
+nav button span{
+  display:block;
+  font-size:20px;
+  margin-bottom:3px
+}
+.active{color:#d27b32}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>
+  <div class="logo">W</div>
+</header>
+
+<h1>به برنامه وود خوش اومدی رفیق 🤠</h1>
+
+<div class="welcome">
+اینجا جاییه برای بیان فکرها، ساختن ارتباط و لحظات خاص.
+</div>
+
+<div class="card">
+  <b>🔥 موضوعات داغ وود</b>
+  <p>فوتبال • بازی • فیلم و سریال • موسیقی • تکنولوژی</p>
+</div>
+
+<div id="feed">
+
+<div class="card">
+  <div class="user">
+    <div class="avatar">و</div>
+    <div>
+      <div class="name">وود</div>
+      <div class="handle">@wood · همین الان</div>
+    </div>
+  </div>
+
+  <div class="post">
+    اولین پست آزمایشی وود! 🌲<br>
+    به نظرتون ظاهر برنامه چطوره؟
+  </div>
+
+  <div class="actions">
+    <button class="like" onclick="like(this)">♡ 128</button>
+    <button>💬 24</button>
+    <button>🔁 17</button>
+  </div>
+</div>
+
+</div>
+
+<div class="compose">
+  <input id="postInput" placeholder="چه چیزی در ذهنته؟">
+  <button class="send" onclick="addPost()">ارسال</button>
+</div>
+
+<nav>
+  <button class="active">
+    <span>⌂</span>
+    خانه
+  </button>
+
+  <button onclick="alert('بخش جستجو به‌زودی اضافه می‌شود 🔎')">
+    <span>⌕</span>
+    جستجو
+  </button>
+
+  <button onclick="document.getElementById('postInput').focus()">
+    <span>＋</span>
+    پست
+  </button>
+
+  <button onclick="alert('فعلاً اعلان جدیدی نداری 🔔')">
+    <span>♧</span>
+    اعلان‌ها
+  </button>
+
+  <button onclick="alert('پروفایل WOOD')">
+    <span>♙</span>
+    پروفایل
+  </button>
+</nav>
+
+</div>
+
+<script>
+
+function like(button){
+  if(button.dataset.liked){
+    button.innerText="♡ 128";
+    delete button.dataset.liked;
+  }else{
+    button.innerText="♥ 129";
+    button.dataset.liked="yes";
+  }
+}
+
+function addPost(){
+
+  const input=document.getElementById("postInput");
+  const text=input.value.trim();
+
+  if(!text){
+    alert("اول چیزی بنویس رفیق 🤠");
+    return;
+  }
+
+  const post=document.createElement("div");
+  post.className="card";
+
+  post.innerHTML=`
+    <div class="user">
+      <div class="avatar">ح</div>
+      <div>
+        <div class="name">حمزه</div>
+        <div class="handle">@wood_user · همین الان</div>
+      </div>
+    </div>
+
+    <div class="post"></div>
+
+    <div class="actions">
+      <button class="like" onclick="like(this)">♡ 0</button>
+      <button>💬 0</button>
+      <button>🔁 0</button>
+    </div>
+  `;
+
+  post.querySelector(".post").innerText=text;
+
+  document.getElementById("feed").prepend(post);
+
+  input.value="";
+}
+
+</script>
+
+</body>
+</html>
